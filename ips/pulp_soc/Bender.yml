@@ -1,0 +1,98 @@
+package:
+  name: pulp_soc
+  authors:
+    - "Robert Balas <balasr@iis.ee.ethz.ch>"
+    - "Pasquale Davide Schiavone <pschiavo@iis.ee.ethz.ch>"
+    - "Germain Haugou <haugoug@iis.ee.ethz.ch>"
+    - "Francesco Conti <f.conti@unibo.it>"
+    - "Pirmin Vogel <vogelpi@lowrisc.org>"
+    - "Stefan Mach <smach@iis.ee.ethz.ch>"
+    - "Antonio Pullini <pullinia@iis.ee.ethz.ch>"
+    - "Gianmarco Ottavi <gianmarco.ottavi2@unibo.it>"
+    - "Manuel Eggimann <meggiman@iis.ee.ethz.ch>"
+    - "Luca Valente <luca.valente2@unibo.it>"
+
+dependencies:
+  L2_tcdm_hybrid_interco: { path: "../L2_tcdm_hybrid_interco" }
+  adv_dbg_if:             { path: "../adv_dbg_if" }
+  apb2per:                { path: "../apb/apb2per" }
+  apb_adv_timer:          { path: "../apb/apb_adv_timer" }
+  apb_fll_if:             { path: "../apb/apb_fll_if" }
+  apb_gpio:               { path: "../apb/apb_gpio" }
+  apb_node:               { path: "../apb/apb_node" }
+  apb_interrupt_cntrl:    { path: "../apb_interrupt_cntrl" }
+  axi/axi:                { path: "../axi/axi" }
+  axi/axi_node:           { path: "../axi/axi_node" }
+  axi/axi_slice:          { path: "../axi/axi_slice" }
+  axi/axi_slice_dc:       { path: "../axi/axi_slice_dc" }
+  timer_unit:             { path: "../timer_unit" }
+  common_cells:           { path: "../common_cells" }
+  fpu:                    { path: "../fpu" }
+  jtag_pulp:              { path: "../jtag_pulp" }
+  riscv:                  { path: "../riscv" }
+  ibex:                   { path: "../ibex" }
+  scm:                    { path: "../scm" }
+  generic_FLL:            { path: "../generic_FLL" }
+  tech_cells_generic:     { path: "../tech_cells_generic" }
+  udma_core:              { path: "../udma/udma_core" }
+  udma_uart:              { path: "../udma/udma_uart" }
+  udma_i2c:               { path: "../udma/udma_i2c" }
+  udma_i2s:               { path: "../udma/udma_i2s" }
+  udma_qspi:              { path: "../udma/udma_qspi" }
+  udma_sdio:              { path: "../udma/udma_sdio" }
+  udma_camera:            { path: "../udma/udma_camera" }
+  udma_filter:            { path: "../udma/udma_filter" }
+  udma_external_per:      { path: "../udma/udma_external_per" }
+  hwpe-mac-engine:        { path: "../hwpe-mac-engine" }
+  riscv-dbg:              { path: "../riscv-dbg" }
+
+sources:
+  # pulp_soc
+  - include_dirs:
+      - ../../rtl/include
+    files:
+      - rtl/pulp_soc/soc_interconnect.sv
+      - rtl/pulp_soc/boot_rom.sv
+      - rtl/pulp_soc/l2_ram_multi_bank.sv
+      - rtl/pulp_soc/lint_jtag_wrap.sv
+      - rtl/pulp_soc/periph_bus_wrap.sv
+      - rtl/pulp_soc/soc_clk_rst_gen.sv
+      - rtl/pulp_soc/soc_event_arbiter.sv
+      - rtl/pulp_soc/soc_event_generator.sv
+      - rtl/pulp_soc/soc_event_queue.sv
+      - rtl/pulp_soc/soc_interconnect_wrap.sv
+      - rtl/pulp_soc/soc_peripherals.sv
+      - rtl/pulp_soc/pulp_soc.sv
+  # udma_subsystem
+  - files:
+      - rtl/udma_subsystem/udma_subsystem.sv
+  # fc
+  - target: rtl
+    defines:
+      TRACE_EXECUTION: ~
+    files:
+      - rtl/fc/fc_demux.sv
+      - rtl/fc/fc_subsystem.sv
+      - rtl/fc/fc_hwpe.sv
+  - target: not(rtl)
+    files:
+      - rtl/fc/fc_demux.sv
+      - rtl/fc/fc_subsystem.sv
+      - rtl/fc/fc_hwpe.sv
+  # components
+  - files:
+      - rtl/components/apb_clkdiv.sv
+      - rtl/components/apb_timer_unit.sv
+      - rtl/components/apb_soc_ctrl.sv
+      - rtl/components/counter.sv
+      - rtl/components/memory_models.sv
+      - rtl/components/pulp_interfaces.sv
+      - rtl/components/axi_slice_dc_master_wrap.sv
+      - rtl/components/axi_slice_dc_slave_wrap.sv
+      - rtl/components/glitch_free_clk_mux.sv
+      - rtl/components/scm_2048x32.sv
+      - rtl/components/scm_512x32.sv
+    target: rtl
+  # components_behav
+  - files:
+      - rtl/components/freq_meter.sv

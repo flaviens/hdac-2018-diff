@@ -1,0 +1,26 @@
+package:
+  name: udma_i2s
+  authors: 
+    - "Antonio Pullini <pullinia@iis.ee.ethz.ch>"
+    - "Jie Chen <jie.chen@greenwaves-technologies.com>"
+    - "Pasquale Davide Schiavone <pschiavo@iis.ee.ethz.ch>"
+
+dependencies:
+  udma_core:          { path: "../udma_core" }
+  tech_cells_generic: { path: "../../tech_cells_generic" }
+  common_cells:       { path: "../../common_cells" }
+
+sources:
+    # Source files grouped in levels. Files in level 0 have no dependencies on files in this
+    # package. Files in level 1 only depend on files in level 0, files in level 2 on files in
+    # levels 1 and 0, etc. Files within a level are ordered alphabetically.
+    # Level 0
+  - rtl/i2s_clk_gen.sv
+  - rtl/i2s_rx_channel.sv
+  - rtl/i2s_ws_gen.sv
+  - rtl/cic_integrator.sv
+  - rtl/udma_i2s_multich.sv
+  - rtl/udma_i2s_2ch.sv
+  - rtl/udma_i2s_reg_if.sv
+  - rtl/cic_comb.sv
+  - rtl/cic_top.sv

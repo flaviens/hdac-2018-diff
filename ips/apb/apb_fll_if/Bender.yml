@@ -1,0 +1,5 @@
+package:
+  name: apb_fll_if
+  authors: [ "Antonio Pullini <pullinia@iis.ee.ethz.ch>" ]
+sources:
+  - apb_fll_if.sv

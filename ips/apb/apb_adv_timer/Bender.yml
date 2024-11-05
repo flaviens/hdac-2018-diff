@@ -1,0 +1,14 @@
+package:
+  name: apb_adv_timer
+
+sources:
+  - adv_timer_apb_if.sv
+  - comparator.sv
+  - lut_4x4.sv
+  - out_filter.sv
+  - up_down_counter.sv
+  - input_stage.sv
+  - prescaler.sv
+  - apb_adv_timer.sv
+  - timer_cntrl.sv
+  - timer_module.sv

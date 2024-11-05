@@ -1,0 +1,5 @@
+package:
+  name: apb2per
+
+sources:
+  - apb2per.sv

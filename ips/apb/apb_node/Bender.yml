@@ -1,0 +1,7 @@
+package:
+  name: apb_node
+  authors: ["Florian Zaruba <zarubaf@iis.ee.ethz.ch>, Davide Rossi <davide.rossi@unibo.it>"]
+
+sources:
+  - apb_node.sv
+  - apb_node_wrap.sv
